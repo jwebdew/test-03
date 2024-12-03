@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>세이지 리서치 헤더</title>
+    <link rel="stylesheet" href="css/스크립트24.css">
+</head>
+<script>
+    window.onload = () => {
+        let body = document.querySelector('body');
+        let header = document.querySelector('.header');
+
+        let mNav = document.querySelector('.mobile_nav');
+
+        let mDepth01 = document.querySelectorAll('.mobile_nav .depth01');
+        let mDepth02 = document.querySelectorAll('.mobile_nav .depth02');
+        let mOpen = document.querySelector('.menu_open');
+        let mClose = document.querySelector('.menu_close');
+
+        let i = 0;
+
+        mOpen.addEventListener('click', () => {
+            body.classList.add('on');
+            mNav.classList.add('on');
+        });
+
+        mClose.addEventListener('click', () => {
+            body.classList.remove('on');
+            mNav.classList.remove('on');
+        });
+
+        
+        //클래스명 depth02의 앞에잇는 형제선택자들에게 클래스명 item추가
+        mDepth02.forEach((addItem) => {
+            addItem.previousElementSibling.classList.add('item')
+        });
+
+        //모바일 메뉴 
+        for(let i = 0; i < mDepth01.length; i++) {
+            mDepth01[i].addEventListener('click', () => {
+                if(getComputedStyle( mDepth01[i].nextElementSibling).display === 'none') {
+                    mDepth02.forEach((depth02Item) => {
+                        depth02Item.classList.remove('on')
+                    })
+                    mDepth01[i].nextElementSibling.classList.add('on');
+
+                    mDepth01.forEach((depth01Item) => {
+                        depth01Item.classList.remove('on')
+                    })
+                    mDepth01[i].classList.add('on')
+                } else {
+                    mDepth01[i].nextElementSibling.classList.remove('on');
+                    mDepth01[i].classList.remove('on')
+
+                    
+                }
+            });
+        } //모바일 메뉴
+
+        let visualText = document.querySelector('.main_visual div'); 
+        let visualTextTop = visualText.offsetTop;
+
+        let section02 = document.querySelector('.section_title');
+        let sectionTitleTop = section02.offsetTop;
+
+        let sectionTitle = document.querySelector('.section_title h3');
+
+        window.addEventListener('scroll', () => {
+            let scrollBar = window.scrollY;
+            let opacityNum = 100 - (scrollBar / 5);
+            let transformNum = scrollBar / 10;
+            
+             
+            i++;
+            if(scrollBar >= 200) {
+                visualText.style.opacity = opacityNum + '%'
+                visualText.style.top =  -transformNum + 'px'
+            } else {
+                visualText.style.opacity = '100%';
+
+            }
+
+            console.log(i)
+            if(scrollBar >= sectionTitleTop) {
+                sectionTitle.style.opacity = scrollBar / 15 + '%';
+            } else {
+                // sectionTitle.style.opacity = 0;
+
+            }
+ 
+        });//
+
+
+
+        
+         
+    };//script end
+</script>
+
+<body>
+    <!-- https://saige.ai/ -->
+    <header class="header">
+        <div class="inner">
+            <h1>
+                <a href="#">
+                    <svg width="110" height="24" viewBox="0 0 110 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        loading="lazy" alt="" data-v-0fae573d="">
+                        <g clip-path="url(#clip0_1102_23607)">
+                            <path
+                                d="M74.4843 24C73.2264 24 71.9587 23.8242 70.7156 23.4726C65.4482 21.9882 61.9498 17.2859 62.0186 11.7778C62.0825 6.47487 65.7578 1.83113 70.9465 0.478532C71.9685 0.214849 73.02 0.078125 74.0765 0.078125C78.3365 0.078125 82.3067 2.2706 84.4441 5.79613C84.4588 5.82055 84.4687 5.84008 84.4785 5.84984L80.1447 8.15463C78.9802 6.2063 76.8674 5.04903 74.4352 5.04903C73.2657 5.04903 72.0963 5.32248 71.0546 5.84496C68.1261 7.30986 66.6472 10.3129 67.2908 13.4918C67.8805 16.4313 70.7008 18.7605 73.8504 18.9119C73.9831 18.9168 74.1207 18.9217 74.2583 18.9217C76.8477 18.9217 79.8253 17.6765 80.2479 14.9371L80.3019 14.5758H73.7866V10.4252H85.2745V11.8706C85.2745 13.5845 85.2794 15.0641 85.2548 16.8757C85.2401 17.1052 84.6603 18.2966 84.4441 18.6531C82.405 21.9931 78.6805 23.9902 74.4941 23.9902L74.4843 24Z"
+                                fill="#FF4052"></path>
+                            <path
+                                d="M25.0645 23.3505L30.3564 0.703125H41.7264L47.0134 23.3163H41.8197L41.0483 20.2889H31.0344L30.3023 23.3505H25.0645ZM32.2088 15.3961H39.8887L37.6481 5.71309H34.4543L32.2088 15.3961Z"
+                                fill="#FF4052"></path>
+                            <path d="M57.1401 0.732422H52.2363V23.3603H57.1401V0.732422Z" fill="#FF4052"></path>
+                            <path
+                                d="M11.2029 23.9756C8.05825 23.9756 5.09537 23.1357 3.07098 21.6757C1.63622 20.6405 0.555233 19.2684 0 17.7839L5.05115 16.4118C6.25988 18.0916 8.46607 19.0486 11.1489 19.0486C12.5738 19.0486 13.9545 18.7605 15.0306 18.2429C15.3696 18.0769 16.4015 17.5788 16.2934 16.4167C16.1951 15.3815 15.3156 15.2008 14.667 15.069L14.5687 15.0494C13.134 14.7516 11.8515 14.649 10.6084 14.5514C9.74851 14.483 8.94269 14.4195 8.08282 14.2975C6.62349 14.0875 5.40492 13.8043 4.36325 13.4283C2.09809 12.6226 0.643677 10.9672 0.27516 8.76989C-0.122839 6.39674 0.835306 3.75504 2.6091 2.34873C4.23549 1.05473 6.25497 0.312513 8.78054 0.0781282C9.35052 0.0244151 9.91558 0 10.4659 0C12.5394 0 14.4999 0.385758 16.2885 1.14262C18.7305 2.17782 20.3225 3.87223 21.1529 6.31862L16.259 7.65168C15.3156 5.81078 13.2912 5.259 12.1414 5.09298C11.3553 4.98067 10.7361 4.89278 10.0925 4.89278C9.22276 4.89278 8.34815 5.0588 7.09028 5.46897C6.17144 5.76684 5.287 6.53835 5.37544 7.59308C5.48354 8.83825 6.58418 9.02381 7.2426 9.13123C8.9476 9.41445 10.3332 9.51211 11.6697 9.60977C12.5591 9.67325 13.3993 9.73184 14.323 9.84415C15.1436 9.94181 16.0477 10.1615 17.0059 10.4936C19.6592 11.4067 21.0792 13.0083 21.3544 15.3815C21.7081 18.4285 20.6173 20.7479 18.1065 22.2763C16.3032 23.375 13.8513 23.9756 11.198 23.9756H11.2029Z"
+                                fill="#FF4052"></path>
+                            <path
+                                d="M89.9629 23.3408V0.737305H110V5.59102H95.0386V9.45348V14.5269H94.9993V18.321H109.991V23.3408H89.9629Z"
+                                fill="#FF4052"></path>
+                            <path d="M105.965 9.56055H100.305V14.6828H105.965V9.56055Z" fill="#FF4052"></path>
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_1102_23607">
+                                <rect width="110" height="24" fill="white"></rect>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                </a>
+            </h1>
+
+            <nav class="pc_nav pc">
+                <ul class="gnb">
+                    <li>
+                        <a href="#" class="depth01">Solutions</a>
+                        <ul class="depth02">
+                            <li><a href="#">SAIGE VISION</a></li>
+                            <li><a href="#">SAIGE VIMS</a></li>
+                            <li><a href="#">SAIGE SAFETY</a></li>
+                        </ul><!-- .depth02 end -->
+                    </li>
+
+                    <li>
+                        <a href="#" class="depth01">Industries</a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="depth01">Resources</a>
+                        <ul class="depth02">
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Research</a></li>
+                            <li><a href="#">Guide</a></li>
+                        </ul><!-- .depth02 end -->
+                    </li>
+
+                    <li>
+                        <a href="#" class="depth01">Company</a>
+                        <ul class="depth02">
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Inquiry</a></li>
+                        </ul><!-- .depth02 end -->
+                    </li>
+                </ul><!-- .gnb end -->
+
+            </nav><!-- .pc_nav -->
+
+            <div class="util pc">
+                <ul class="lang">
+                    <li> 
+                        <a href="#">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#0F172A" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M2 12H22" stroke="#0F172A" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12 2C14.5013 4.73835 15.9228 8.29203 16 12C15.9228 15.708 14.5013 19.2616 12 22C9.49872 19.2616 8.07725 15.708 8 12C8.07725 8.29203 9.49872 4.73835 12 2V2Z" stroke="#0F172A" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            KR
+                        </a>
+                        <ul>
+                            <li><a href="#">KR</a></li>
+                            <li><a href="#">EN</a></li>
+                            <li><a href="#">CN</a></li>
+                        </ul>
+                    </li>
+                </ul><!-- .lang end -->
+                <button>문의하기</button>
+            </div><!-- .util end -->
+
+            <button class="menu_open mobile">
+                <img src="img/icon_menu-02.svg" alt="메뉴보기">
+            </button>
+            <nav class="mobile_nav mobile">
+
+                <button class="menu_close">
+                    <img src="img/icon_close.svg" alt="">
+                </button>
+                <button>문의하기</button>
+
+                <ul class="gnb">
+                    <li>
+                        <a href="#" class="depth01">Solutions</a>
+                        <ul class="depth02">
+                            <li><a href="#">SAIGE VISION</a></li>
+                            <li><a href="#">SAIGE VIMS</a></li>
+                            <li><a href="#">SAIGE SAFETY</a></li>
+                        </ul><!-- .depth02 end -->
+                    </li>
+
+                    <li>
+                        <a href="#" class="depth01">Industries</a>
+                    </li>
+                    <li>
+                        <a href="#" class="depth01">Resources</a>
+                        <ul class="depth02">
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Research</a></li>
+                            <li><a href="#">Guide</a></li>
+                        </ul><!-- .depth02 end -->
+                    </li>
+                    <li>
+                        <a href="#" class="depth01">Company</a>
+                        <ul class="depth02">
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Inquiry</a></li>
+                        </ul><!-- .depth02 end -->
+                    </li>
+                </ul><!-- .gnb end -->
+
+                <ul class="lang">
+                    <li class="kr"><a href="#">KR</a></li>
+                    <li><a href="#">EN</a></li>
+                    <li><a href="#">CN</a></li>
+                </ul>
+            </nav><!-- .mobile_nav end -->
+
+        </div><!-- .inner end -->
+    </header><!-- .header end -->
+    <main class="main">
+        <section class="main_visual">
+            <div>
+                <h2>AI 비전 솔루션</h2>
+                <P>실시간으로 이상 징후를 감시합니다.</P>
+
+                <a href="#">솔루션 문의하기</a>
+            </div>
+        </section><!-- .main_visual end -->
+
+
+        <section class="section_title">
+            <h3>세이지만의 혁신적인 AI 기술로 스마트 팩토리 환경을 만듭니다.</h3>
+        </section><!-- .section_title  end -->
+
+        <section class="solutions">
+            <div class="inner">
+                <div class="title">
+                    <h3>Solutions</h3>
+                    <p>제조업을 탈바꿈시킬 혁신적인 솔루션</p>
+                </div><!-- title -->
+
+                <div class="cont">
+                    <ul class="cont_tab-menu">
+                        <li>SAIGE VISION</li>
+                        <li>SAIGE VIMS</li>
+                        <li>SAIGE SAFETY</li>
+                    </ul><!-- .tab_menu end -->
+
+                    <div class="cont_tab-list">
+                        <div class="item">
+                            <div class="item-info">
+                                <strong>
+                                    <img src="img/h-vision.TYLL5b_l.svg" alt="">
+                                </strong>
+                                <h4>딥러닝 기반 머신비전 솔루션</h4>
+                                <p>결함 검사 자동화로 생산 품질을 극대화할 수 있습니다. 미검과 오검을 줄이고 생산 품질을 극대화하세요.</p>
+                                <a href="#">자세히 알아보기</a>
+                            </div>
+                            <video>
+                                <source src="img/vision-main.mp4" type="video/mp4" />     
+                            </video>
+                        </div>
+                    </div><!-- .tab_cont end -->
+                </div>
+            </div><!-- inner -->
+        </section>
+    </main>
+</body>
+
+</html>
